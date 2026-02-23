@@ -13,9 +13,9 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     // 입력받은 메시지 목록을 바탕으로 Gemini 스트림 요청
-    // (gemini-1.5-pro 속도가 빠르고 합리적인 gemini-1.5-flash 모델 권장)
+    // (이전 3.x 버전 Vercel AI SDK는 내부적으로 구형 v1beta API를 호출하므로, 옛 모델명인 gemini-pro 사용)
     const result = await streamText({
-      model: googleConfig('gemini-1.5-flash-latest'),
+      model: googleConfig('gemini-pro'),
       messages,
       system: `당신은 사용자의 일정을 돕고 정보를 제공하는 친절하고 전문적인 AI 개인 비서 'P.I.D Assistant' 입니다. 
 모든 답변은 한국어로 명확하고 간결하게 작성하며, 마크다운(Markdown) 포맷을 활용해 가독성 있게 답변해주세요.`,

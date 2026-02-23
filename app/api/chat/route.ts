@@ -14,7 +14,7 @@ export async function POST(req: Request) {
 
     // 입력받은 메시지 목록을 바탕으로 Gemini 스트림 요청
     // (gemini-1.5-pro 속도가 빠르고 합리적인 gemini-1.5-flash 모델 권장)
-    const result = streamText({
+    const result = await streamText({
       model: googleConfig('gemini-1.5-flash-latest'),
       messages,
       system: `당신은 사용자의 일정을 돕고 정보를 제공하는 친절하고 전문적인 AI 개인 비서 'P.I.D Assistant' 입니다. 

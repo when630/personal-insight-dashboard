@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquareText, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";

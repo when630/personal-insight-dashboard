@@ -54,7 +54,7 @@ export default function ChatPage() {
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-4xl mx-auto flex flex-col h-[calc(100vh-12rem)] min-h-[500px]">
+      <main className="flex-1 w-full max-w-4xl mx-auto flex flex-col h-full min-h-[500px]">
         <Card className="flex-1 flex flex-col shadow-sm overflow-hidden border-primary/20">
           <CardHeader className="bg-muted/30 border-b pb-4">
             <CardTitle className="flex items-center gap-2 text-lg">

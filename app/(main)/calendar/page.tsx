@@ -89,7 +89,7 @@ export default function CalendarPage() {
           </CardContent>
         </Card>
 
-        <Card className="lg:col-span-2 flex flex-col h-[calc(100vh-14rem)] min-h-[500px]">
+        <Card className="lg:col-span-2 flex flex-col h-full min-h-[500px]">
           <CardHeader className="border-b">
             <CardTitle className="text-xl flex items-center justify-between">
               <span className="flex items-center gap-2">

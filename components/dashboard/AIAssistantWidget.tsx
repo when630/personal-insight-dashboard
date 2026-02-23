@@ -47,7 +47,7 @@ export function AIAssistantWidget() {
   }, [messages]);
 
   return (
-    <Card className="col-span-1 md:col-span-2 xl:col-span-2 flex flex-col h-[400px] bg-gradient-to-br from-primary/10 via-background to-background border-primary/20">
+    <Card className="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-2 flex flex-col h-full min-h-[400px] lg:min-h-0 bg-gradient-to-br from-primary/10 via-background to-background border-primary/20">
       <CardHeader className="pb-2 pt-5 px-6 flex flex-row items-center justify-between">
         <CardTitle className="text-lg font-semibold flex items-center gap-2">
           <Sparkles className="h-5 w-5 text-primary" />

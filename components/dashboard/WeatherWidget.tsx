@@ -60,7 +60,7 @@ export function WeatherWidget() {
   };
 
   return (
-    <Card className="col-span-1 border-blue-100 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-900 overflow-hidden relative">
+    <Card className="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1 flex flex-col justify-between border-blue-100 bg-blue-50/50 dark:bg-blue-950/20 dark:border-blue-900 overflow-hidden relative h-full min-h-[140px]">
       <CardHeader className="pb-1 pt-5 px-6">
         <CardTitle className="text-lg font-semibold flex items-center justify-between z-10 relative">
           <span>{weather ? weather.location : '날씨'}</span>

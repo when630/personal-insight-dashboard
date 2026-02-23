@@ -75,7 +75,7 @@ export function CalendarWidget() {
   };
 
   return (
-    <Card className="col-span-1 md:col-span-2 xl:col-span-2 row-span-2 flex flex-col hover:shadow-md transition-shadow">
+    <Card className="col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col hover:shadow-md transition-shadow h-full">
       <CardHeader className="flex flex-row items-center justify-between pb-2">
         <CardTitle className="text-lg font-semibold flex items-center gap-2">
           <CalendarDays className="h-5 w-5 text-primary" />

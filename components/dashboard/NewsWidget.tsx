@@ -53,7 +53,7 @@ export function NewsWidget() {
   };
 
   return (
-    <Card className="col-span-1 md:col-span-2 xl:col-span-1 flex flex-col h-[400px]">
+    <Card className="col-span-1 md:col-span-1 lg:col-span-1 xl:col-span-1 flex flex-col h-full min-h-[350px] lg:min-h-0">
       <CardHeader className="pb-2 pt-5 px-6 flex flex-row items-center justify-between">
         <CardTitle className="text-lg font-semibold flex items-center gap-2">
           <Newspaper className="h-5 w-5 text-indigo-500" />

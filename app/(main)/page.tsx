@@ -1,9 +1,13 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
+import { CalendarWidget } from "@/components/dashboard/CalendarWidget";
+import { WeatherWidget } from "@/components/dashboard/WeatherWidget";
+import { AIAssistantWidget } from "@/components/dashboard/AIAssistantWidget";
+import { NewsWidget } from "@/components/dashboard/NewsWidget";
 
 export default async function DashboardPage() {
-  // 서버 컴포넌트에서 쿠키 속성으로 Supabase 클라이언트 획득
   const supabase = await createClient();
 
   // 사용자 인증 정보 가져오기
@@ -15,42 +19,42 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
+  // 이메일에서 이름 부분만 추출 (예: test@a.com -> test)
+  const username = user.email?.split('@')[0] || "사용자";
+
   return (
-    <div className="flex flex-col min-h-screen p-8 bg-background">
-      <header className="mb-8 flex items-center justify-between">
+    <div className="flex flex-col min-h-screen p-6 md:p-8 bg-background">
+      <header className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">대시보드 (Bento Grid)</h1>
-          <p className="text-muted-foreground mt-1">
-            환영합니다, {user.email}님!
+          <h1 className="text-3xl font-bold tracking-tight">대시보드</h1>
+          <p className="text-muted-foreground mt-1 text-sm md:text-base">
+            환영합니다, <span className="font-semibold text-foreground">{username}</span>님! 오늘도 생산적인 하루 되세요.
           </p>
         </div>
         <form action="/auth/signout" method="post">
-          {/* 로그아웃 액션 연동 준비 */}
-          <Button variant="secondary">로그아웃</Button>
+          <Button variant="outline" size="sm" className="hidden md:flex">
+            <LogOut className="mr-2 h-4 w-4" />
+            로그아웃
+          </Button>
+          <Button variant="outline" size="icon" className="md:hidden">
+            <LogOut className="h-4 w-4" />
+            <span className="sr-only">로그아웃</span>
+          </Button>
         </form>
       </header>
 
-      <main className="flex-1 grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {/* 추후 위젯들(캘린더, 날씨, 챗봇 등)이 위치할 기본 그리드입니다 */}
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6 col-span-2 row-span-2">
-          <h2 className="font-semibold mb-2">오늘의 일정 요약</h2>
-          <p className="text-sm text-muted-foreground">캘린더 데이터 연동 필요</p>
-        </div>
-
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6">
-          <h2 className="font-semibold mb-2">날씨</h2>
-          <p className="text-sm text-muted-foreground">날씨 API 연동 필요</p>
-        </div>
-
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6">
-          <h2 className="font-semibold mb-2">AI 챗봇</h2>
-          <p className="text-sm text-muted-foreground">빠른 질문하기</p>
-        </div>
-
-        <div className="rounded-xl border bg-card text-card-foreground shadow-sm p-6">
-          <h2 className="font-semibold mb-2">주요 뉴스</h2>
-          <p className="text-sm text-muted-foreground">최신 헤드라인 제공 예정</p>
-        </div>
+      {/* Bento Grid 메인 컨테이너 */}
+      <main className="grid flex-1 gap-4 md:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-rows-max">
+        {/*
+          1. 캘린더 위젯: 기본 2칸 너비, 2칸 높이 유지
+          2. 날씨 위젯: 1칸
+          3. 주요 뉴스 위젯: 기본 1칸 (모바일에선 2칸)
+          4. AI 챗봇 위젯: 넓게 2칸
+        */}
+        <CalendarWidget />
+        <WeatherWidget />
+        <NewsWidget />
+        <AIAssistantWidget />
       </main>
     </div>
   );

@@ -52,7 +52,7 @@ export default function ChatPage() {
                 )}
 
                 {/* 채팅 메시지 목록 */}
-                {messages.map((m) => (
+                {messages.map((m: { id: string, role: string, content: string }) => (
                   <div
                     key={m.id}
                     className={`flex gap-3 ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}
@@ -65,8 +65,8 @@ export default function ChatPage() {
 
                     <div
                       className={`px-4 py-3 rounded-2xl max-w-[80%] break-words whitespace-pre-wrap ${m.role === 'user'
-                          ? 'bg-primary text-primary-foreground rounded-tr-sm'
-                          : 'bg-muted rounded-tl-sm'
+                        ? 'bg-primary text-primary-foreground rounded-tr-sm'
+                        : 'bg-muted rounded-tl-sm'
                         }`}
                     >
                       {m.content}
@@ -102,7 +102,7 @@ export default function ChatPage() {
                 className="flex items-center gap-2"
               >
                 <Input
-                  value={input}
+                  value={input || ""}
                   onChange={handleInputChange}
                   placeholder="메시지를 입력하세요..."
                   className="flex-1 focus-visible:ring-primary h-12 rounded-full px-5"
@@ -111,7 +111,7 @@ export default function ChatPage() {
                 <Button
                   type="submit"
                   size="icon"
-                  disabled={isLoading || !input.trim()}
+                  disabled={isLoading || !(input || "").trim()}
                   className="h-12 w-12 shrink-0 rounded-full"
                 >
                   <Send className="h-5 w-5 ml-1" />
